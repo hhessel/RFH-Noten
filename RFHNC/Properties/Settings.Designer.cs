@@ -92,5 +92,53 @@ namespace RFHNC.Properties {
                 this["checking"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool sendemail {
+            get {
+                return ((bool)(this["sendemail"]));
+            }
+            set {
+                this["sendemail"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string email_user {
+            get {
+                return ((string)(this["email_user"]));
+            }
+            set {
+                this["email_user"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string email_pass {
+            get {
+                return ((string)(this["email_pass"]));
+            }
+            set {
+                this["email_pass"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string email_to {
+            get {
+                return ((string)(this["email_to"]));
+            }
+            set {
+                this["email_to"] = value;
+            }
+        }
     }
 }

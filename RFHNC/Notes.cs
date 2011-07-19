@@ -7,14 +7,16 @@ using System.Configuration;
 namespace RFHNC
 {
     [Serializable]
-    public class Semester : ApplicationSettingsBase 
+    public class Semester 
     {
         public String semester { get; set; }
         public List<Note> noten { get; set; }
     }
 
+    [Serializable]
     public class Note {
         public String modulbezeichnung { get; set; }
         public String note { get; set; }
+        public bool changed { get; set; }
     }
 }

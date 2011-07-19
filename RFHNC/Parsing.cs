@@ -76,7 +76,8 @@ namespace RFHNC
              string[] stringSeparators = new string[] {"&nbsp;&nbsp;&nbsp;"};
              Semester semester = new Semester();
              HtmlDocument doc = new HtmlDocument();
-             doc.LoadHtml(htmlContent);
+             doc.Load("C:\\Users\\HenrikPHessel\\Desktop\\Studentenportal - Rheinische Fachhochschule Köln.htm");
+             // doc.LoadHtml(htmlContent);
 
              // Pull Semester
              var semesterHtml = doc.DocumentNode.SelectNodes("//*[contains(concat( \" \", @class, \" \" ), concat( \" \", \"semester_bez\", \" \" ))]");
@@ -97,6 +98,7 @@ namespace RFHNC
                          Note note = new Note();
                          note.modulbezeichnung = next.ChildNodes[0].InnerText.Split(stringSeparators, StringSplitOptions.None)[0];
                          note.note = next.ChildNodes[1].InnerText;
+                         note.changed = false;
                          semester.noten.Add(note);
                          next = next.NextSibling;
                          if (next == null || next.ChildNodes.Count() == 1) { isDone = true; break; }
@@ -112,18 +114,6 @@ namespace RFHNC
 
         }
 
-        public void checkForUpdates(Semester newUpdate) {
-            bool changed = false;
-            Semester oldData = (Semester)Settings.Default.semester;
-            foreach (Note note in newUpdate.noten) {
-                Note oldNote = oldData.noten.Single(m => m.modulbezeichnung == note.modulbezeichnung);
-                if (oldNote.note != note.note) {
-                    changed = changed ? true : true;
-                }
-            }
-            if (changed) { 
-                // notifyIcon.
-            }
-        }
+
     }
 }

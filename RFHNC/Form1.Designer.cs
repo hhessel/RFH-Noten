@@ -43,14 +43,25 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tb_mail_user = new System.Windows.Forms.TextBox();
+            this.tb_mail_pass = new System.Windows.Forms.TextBox();
+            this.tb_mail_to = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cb_sendemail = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(104, 69);
+            this.button1.Location = new System.Drawing.Point(12, 75);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(125, 23);
+            this.button1.Size = new System.Drawing.Size(221, 23);
             this.button1.TabIndex = 0;
             this.button1.Text = "Prüfe Noten";
             this.button1.UseVisualStyleBackColor = true;
@@ -133,7 +144,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(59, 122);
+            this.label3.Location = new System.Drawing.Point(63, 273);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(170, 13);
             this.label3.TabIndex = 5;
@@ -142,7 +153,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(104, 98);
+            this.checkBox1.Location = new System.Drawing.Point(12, 104);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(120, 17);
             this.checkBox1.TabIndex = 6;
@@ -150,11 +161,98 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Location = new System.Drawing.Point(8, 150);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(221, 120);
+            this.tabControl1.TabIndex = 7;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.tb_mail_to);
+            this.tabPage1.Controls.Add(this.tb_mail_pass);
+            this.tabPage1.Controls.Add(this.tb_mail_user);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(213, 94);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "E-Mail";
+            // 
+            // tb_mail_user
+            // 
+            this.tb_mail_user.Location = new System.Drawing.Point(88, 6);
+            this.tb_mail_user.Name = "tb_mail_user";
+            this.tb_mail_user.Size = new System.Drawing.Size(119, 20);
+            this.tb_mail_user.TabIndex = 0;
+            // 
+            // tb_mail_pass
+            // 
+            this.tb_mail_pass.Location = new System.Drawing.Point(88, 32);
+            this.tb_mail_pass.Name = "tb_mail_pass";
+            this.tb_mail_pass.PasswordChar = '*';
+            this.tb_mail_pass.Size = new System.Drawing.Size(119, 20);
+            this.tb_mail_pass.TabIndex = 1;
+            // 
+            // tb_mail_to
+            // 
+            this.tb_mail_to.Location = new System.Drawing.Point(88, 58);
+            this.tb_mail_to.Name = "tb_mail_to";
+            this.tb_mail_to.Size = new System.Drawing.Size(119, 20);
+            this.tb_mail_to.TabIndex = 2;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 9);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Gmail Benutzer";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(79, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Gmail Passwort";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 61);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(81, 13);
+            this.label6.TabIndex = 5;
+            this.label6.Text = "Sende Email an";
+            // 
+            // cb_sendemail
+            // 
+            this.cb_sendemail.AutoSize = true;
+            this.cb_sendemail.Location = new System.Drawing.Point(12, 127);
+            this.cb_sendemail.Name = "cb_sendemail";
+            this.cb_sendemail.Size = new System.Drawing.Size(231, 17);
+            this.cb_sendemail.TabIndex = 8;
+            this.cb_sendemail.Text = "Sende E-Mail wenn neue Noten vorhanden";
+            this.cb_sendemail.UseVisualStyleBackColor = true;
+            this.cb_sendemail.CheckedChanged += new System.EventHandler(this.cb_sendemail_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(245, 144);
+            this.ClientSize = new System.Drawing.Size(245, 297);
+            this.Controls.Add(this.cb_sendemail);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
@@ -169,6 +267,9 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,6 +290,15 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem neuesUpdateToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TextBox tb_mail_to;
+        private System.Windows.Forms.TextBox tb_mail_pass;
+        private System.Windows.Forms.TextBox tb_mail_user;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox cb_sendemail;
     }
 }
 
