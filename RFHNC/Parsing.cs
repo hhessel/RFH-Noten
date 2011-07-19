@@ -76,8 +76,8 @@ namespace RFHNC
              string[] stringSeparators = new string[] {"&nbsp;&nbsp;&nbsp;"};
              Semester semester = new Semester();
              HtmlDocument doc = new HtmlDocument();
-             doc.Load("C:\\Users\\HenrikPHessel\\Desktop\\Studentenportal - Rheinische Fachhochschule Köln.htm");
-             // doc.LoadHtml(htmlContent);
+             // doc.Load("C:\\Users\\HenrikPHessel\\Desktop\\Studentenportal - Rheinische Fachhochschule Köln.htm");
+             doc.LoadHtml(htmlContent);
 
              // Pull Semester
              var semesterHtml = doc.DocumentNode.SelectNodes("//*[contains(concat( \" \", @class, \" \" ), concat( \" \", \"semester_bez\", \" \" ))]");
