@@ -6,6 +6,7 @@ using HtmlAgilityPack;
 using System.Net;
 using System.IO;
 using RFHNC.Properties;
+using System.Web;
 
 namespace RFHNC
 {
@@ -27,6 +28,7 @@ namespace RFHNC
             webRequest.Method = "POST";
             webRequest.Proxy = null;
             webRequest.AllowAutoRedirect = true;
+            webRequest.Timeout = 10000;
 
             using (var writer = new StreamWriter(webRequest.GetRequestStream()))
             {
@@ -54,7 +56,7 @@ namespace RFHNC
             try
             {
                 HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
-                StreamReader sr = new StreamReader(webResponse.GetResponseStream(), Encoding.ASCII);
+                StreamReader sr = new StreamReader(webResponse.GetResponseStream(), Encoding.GetEncoding(28591));
                 StringBuilder contentBuilder = new StringBuilder();
 
                 while (-1 != sr.Peek())
@@ -77,6 +79,11 @@ namespace RFHNC
              Semester semester = new Semester();
              HtmlDocument doc = new HtmlDocument();
              // doc.Load("C:\\Users\\HenrikPHessel\\Desktop\\Studentenportal - Rheinische Fachhochschule Köln.htm");
+
+             if(htmlContent == null) { 
+                pullNotes();
+             }
+
              doc.LoadHtml(htmlContent);
 
              // Pull Semester
@@ -96,7 +103,7 @@ namespace RFHNC
                      while (next.ChildNodes.Count() > 1)
                      {
                          Note note = new Note();
-                         note.modulbezeichnung = next.ChildNodes[0].InnerText.Split(stringSeparators, StringSplitOptions.None)[0];
+                         note.modulbezeichnung = HttpUtility.HtmlDecode(next.ChildNodes[0].InnerText.Split(stringSeparators, StringSplitOptions.None)[0]);
                          note.note = next.ChildNodes[1].InnerText;
                          note.changed = false;
                          semester.noten.Add(note);

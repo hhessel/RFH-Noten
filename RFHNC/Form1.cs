@@ -23,6 +23,7 @@ namespace RFHNC
         public Form1()
         {
             InitializeComponent();
+            notifyIcon1.BalloonTipText = "RFHNC";
         }
 
         public void checkForUpdates(Semester newUpdate)
@@ -33,17 +34,22 @@ namespace RFHNC
             {
                 foreach (Note note in newUpdate.noten)
                 {
-                    Note oldNote = oldData.noten.Single(m => m.modulbezeichnung == note.modulbezeichnung);
-                    if (oldNote.note != note.note)
-                    {
-                        changed = changed ? true : true;
-                        oldNote.changed = true;
-                        note.changed = true;
+                    if(oldData.noten.Any(m => m.modulbezeichnung == note.modulbezeichnung)) {
+                        Note oldNote = oldData.noten.Single(m => m.modulbezeichnung == note.modulbezeichnung);
+                        if (oldNote.note != note.note)
+                        {
+                            changed = changed ? true : true;
+                            oldNote.changed = true;
+                            note.changed = true;
+                        }
                     }
                 }
                 if (changed)
                 {
                     noteChanged = true;
+                }
+                else {
+                    noteChanged = false;
                 }
             }
         }
@@ -61,11 +67,11 @@ namespace RFHNC
             Settings.Default.Save();
             button1.Enabled = false;
 
+            if (backgroundWorker1 == null) {
+                backgroundWorker1 = new BackgroundWorker();
+            }
             backgroundWorker1.WorkerSupportsCancellation = true;
-            backgroundWorker1.CancelAsync();
-            backgroundWorker1.RunWorkerAsync();
-
-            
+            backgroundWorker1.RunWorkerAsync();   
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -85,6 +91,8 @@ namespace RFHNC
             tb_mail_pass.Text = Settings.Default.email_pass;
             tb_mail_to.Text = Settings.Default.email_to;
 
+            noteChanged = false;
+
             if (cb_sendemail.Checked)
             {
                 tabControl1.Enabled = true;
@@ -92,10 +100,7 @@ namespace RFHNC
             else
             {
                 tabControl1.Enabled = false;
-            }
-
-
-            
+            }       
         }
 
         private void checkForUpdate(object sender, EventArgs e)
@@ -105,6 +110,7 @@ namespace RFHNC
         }
 
         private void doUpdate() {
+            parsing = new Parsing();
             notifyIcon1.BalloonTipText = "Prüfe Noten";
             notifyIcon1.ShowBalloonTip(10000);
 
@@ -140,7 +146,6 @@ namespace RFHNC
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            
             StringBuilder ballonBox = new StringBuilder();
             ballonBox.Append(Settings.Default.semester.semester + Environment.NewLine);
 
@@ -148,10 +153,12 @@ namespace RFHNC
                 ballonBox.Append("NEUE NOTE!!!" + Environment.NewLine);
                 if (cb_sendemail.Checked) sendMail();
             }
+
             foreach (Note note in Settings.Default.semester.noten)
             {
                 ballonBox.Append(note.modulbezeichnung + " : " + note.note + Environment.NewLine);
             }
+
             notifyIcon1.BalloonTipText = ballonBox.ToString();
             notifyIcon1.ShowBalloonTip(4000);
             
