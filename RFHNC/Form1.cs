@@ -114,7 +114,8 @@ namespace RFHNC
             notifyIcon1.BalloonTipText = "Prüfe Noten";
             notifyIcon1.ShowBalloonTip(10000);
 
-            if ((DateTime.Now.Subtract(Settings.Default.lastupdated).Minutes > 10))
+            TimeSpan lastCheck = DateTime.Now.Subtract(Settings.Default.lastupdated);
+            if (lastCheck.TotalMinutes > 10)
             {
                 parsing.login(Settings.Default.matrikelnummer, Settings.Default.passwort);
             }

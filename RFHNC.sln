@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFHNC", "RFHNC\RFHNC.csproj", "{A7E8668F-999A-4C18-8875-C0A564D0BEB9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RFHNC Console", "RFHNC Console\RFHNC Console.csproj", "{487AA684-54F6-46C1-9DF0-DC8BF90971E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{A7E8668F-999A-4C18-8875-C0A564D0BEB9}.Debug|x86.Build.0 = Debug|x86
 		{A7E8668F-999A-4C18-8875-C0A564D0BEB9}.Release|x86.ActiveCfg = Release|x86
 		{A7E8668F-999A-4C18-8875-C0A564D0BEB9}.Release|x86.Build.0 = Release|x86
+		{487AA684-54F6-46C1-9DF0-DC8BF90971E8}.Debug|x86.ActiveCfg = Debug|x86
+		{487AA684-54F6-46C1-9DF0-DC8BF90971E8}.Debug|x86.Build.0 = Debug|x86
+		{487AA684-54F6-46C1-9DF0-DC8BF90971E8}.Release|x86.ActiveCfg = Release|x86
+		{487AA684-54F6-46C1-9DF0-DC8BF90971E8}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
