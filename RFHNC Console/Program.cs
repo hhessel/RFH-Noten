@@ -71,12 +71,12 @@ namespace RFHNC_Console
             Console.WriteLine("{0}  - Checked Notes", DateTime.Now);
             if (currentSemester == null)
             {   
-                parser.login("bwi1102003", "redflame");
+                parser.login("XXX", "XXX");
                 parser.pullNotes();
                 currentSemester = parser.parse();
             }
             else {
-                parser.login("bwi1102003", "redflame");
+                parser.login("XXX", "XXX");
                 parser.pullNotes();
                 Semester newSemester = parser.parse();
                 checkForUpdates(newSemester, currentSemester);
@@ -105,7 +105,7 @@ namespace RFHNC_Console
             MailMessage mailmsg = new MailMessage();
 
             smtp.EnableSsl = true;
-            smtp.Credentials = new NetworkCredential("hhessel@gmail.com", "drcvzdombmtlutjh");
+            smtp.Credentials = new NetworkCredential("XXX", "XXX");
 
             mailmsg.From = new MailAddress(FromMail);
             mailmsg.To.Add(ToMail);

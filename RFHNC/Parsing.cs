@@ -24,6 +24,7 @@ namespace RFHNC
             loginString.Append("login=Login");
 
             webRequest.ContentType = "application/x-www-form-urlencoded";
+            webRequest.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7";
             webRequest.ContentLength = loginString.Length;
             webRequest.Method = "POST";
             webRequest.Proxy = null;
@@ -52,19 +53,27 @@ namespace RFHNC
             HttpWebRequest webRequest = (HttpWebRequest)WebRequest.Create(loginString.ToString());
 
             webRequest.Proxy = null;
+            webRequest.AllowAutoRedirect = true;
+            webRequest.UserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.63 Safari/535.7";
 
             try
             {
                 HttpWebResponse webResponse = (HttpWebResponse)webRequest.GetResponse();
-                StreamReader sr = new StreamReader(webResponse.GetResponseStream(), Encoding.GetEncoding(28591));
+                // StreamReader sr = new StreamReader(webResponse.GetResponseStream(), Encoding.GetEncoding(28591));
                 StringBuilder contentBuilder = new StringBuilder();
 
+                using (StreamReader sr = new StreamReader(webResponse.GetResponseStream(), Encoding.GetEncoding(28591)))
+                {
+                    contentBuilder.Append(sr.ReadToEnd());
+                    sr.Close();
+                }
+                /*
                 while (-1 != sr.Peek())
                 {
                     contentBuilder.Append(sr.ReadLine());
                     contentBuilder.Append("\r\n");
                 }
-
+                */
                 htmlContent = contentBuilder.ToString();
             }
             catch (Exception ex) { 

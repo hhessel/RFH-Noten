@@ -10,6 +10,7 @@ using RFHNC.Properties;
 using System.Deployment.Application;
 using System.Net.Mail;
 using System.Net;
+using CustomUIControls;
 
 namespace RFHNC
 {
@@ -18,12 +19,25 @@ namespace RFHNC
         public Parsing parsing { get; set; }
         public Semester semester { get; set; }
         private Timer t1 { get; set; }
-        private bool noteChanged { get; set; } 
+        private bool noteChanged { get; set; }
+        private TaskbarNotifier taskbarNotifier { get; set; }
 
         public Form1()
         {
             InitializeComponent();
-            notifyIcon1.BalloonTipText = "RFHNC";
+            // notifyIcon1.BalloonTipText = "RFHNC";
+            
+            taskbarNotifier=new TaskbarNotifier();
+            taskbarNotifier.ContentRectangle=new Rectangle(0,0,339,325);
+     
+            
+            taskbarNotifier.SetBackgroundBitmap("079.bmp", Color.FromArgb(255, 0, 255));
+            taskbarNotifier.ContentClick += new EventHandler(contentclicked);
+        }
+
+        private void contentclicked(object sender, EventArgs e)
+        {
+            taskbarNotifier.Hide();
         }
 
         public void checkForUpdates(Semester newUpdate)
@@ -130,7 +144,14 @@ namespace RFHNC
         private void notifyIcon1_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) {
-                notifyIcon1.ShowBalloonTip(4000);
+                StringBuilder ballonBox = new StringBuilder();
+                ballonBox.Append(Settings.Default.semester.semester + Environment.NewLine);
+
+                foreach (Note note in Settings.Default.semester.noten)
+                {
+                    ballonBox.Append(note.modulbezeichnung + " : " + note.note + Environment.NewLine);
+                }
+                taskbarNotifier.Show("", ballonBox.ToString(), 200, 20000, 200);
             } 
         }
 
@@ -160,9 +181,10 @@ namespace RFHNC
                 ballonBox.Append(note.modulbezeichnung + " : " + note.note + Environment.NewLine);
             }
 
-            notifyIcon1.BalloonTipText = ballonBox.ToString();
-            notifyIcon1.ShowBalloonTip(4000);
-            
+            // notifyIcon1.BalloonTipText = ballonBox.ToString();
+            // notifyIcon1.ShowBalloonTip(4000);
+            taskbarNotifier.Show("", ballonBox.ToString(), 500, 3000, 500);
+
             button1.Enabled = true;
         }
 
@@ -249,5 +271,6 @@ namespace RFHNC
                 tabControl1.Enabled = false;
             }
         }
+
     }
 }
